@@ -16,6 +16,7 @@ import java.util.List;
 public class StandAlone {
     public static void main(String[] args) throws InterruptedException {
         String productName = "ZARA COAT 3";
+        System.out.println("=====Test Started=====");
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
