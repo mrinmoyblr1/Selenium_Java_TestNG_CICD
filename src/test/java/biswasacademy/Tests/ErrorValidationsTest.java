@@ -16,7 +16,7 @@ public class ErrorValidationsTest extends BaseTest {
     public void LoginErrorValidation() {
         System.out.println("loginErrorValidation");
 
-        landingPage.loginApplication("mrinmoy.blr@gmail.com", "Anjali@1212");
+        landingPage.loginApplication("mrinmoy.blr@gmail.com", "Test1234");
         Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
         System.out.println("Error message displayed" + ": " + landingPage.getErrorMessage());
     }
@@ -27,7 +27,7 @@ public class ErrorValidationsTest extends BaseTest {
         System.out.println("productErrorValidation");
         String productName = "ZARA COAT 3";
 
-        ProductCatalogue productCatalogue = landingPage.loginApplication("mrinmoy.blr@gmail.com", "Anjali@12");
+        ProductCatalogue productCatalogue = landingPage.loginApplication("mrinmoy.blr@gmail.com", "Test1234");
         productCatalogue.addProductToCart(productName);
 
         CartPage cartPage = productCatalogue.goToCartPage();

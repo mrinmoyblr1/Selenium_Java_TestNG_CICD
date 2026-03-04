@@ -9,6 +9,6 @@ Feature: Error validation
 
     Examples:
       | name                  | password   |
-      | mrinmoy.blr@gmail.com | Anjali@123 |
+      | mrinmoy.blr@gmail.com | Test1234|
 
 

@@ -26,7 +26,7 @@ public class StandAlone {
 
 
         driver.findElement(By.id("userEmail")).sendKeys("mrinmoy.blr@gmail.com");
-        driver.findElement(By.id("userPassword")).sendKeys("Anjali@12");
+        driver.findElement(By.id("userPassword")).sendKeys("Test1234");
         driver.findElement(By.id("login")).click();
 
 

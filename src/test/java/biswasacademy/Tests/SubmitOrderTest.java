@@ -46,7 +46,7 @@ public class SubmitOrderTest extends BaseTest {
     @Test(dependsOnMethods = {"submitOrder"})
     public void OrderHistoryTest() throws InterruptedException {
         System.out.println("Order History Test...");
-        ProductCatalogue productCatalogue = landingPage.loginApplication("mrinmoy.blr@gmail.com", "Anjali@12");
+        ProductCatalogue productCatalogue = landingPage.loginApplication("mrinmoy.blr@gmail.com", "Test1234");
         OrderPage orderPage = productCatalogue.goToOrdersPage();
         Assert.assertTrue(orderPage.verifyOrderDisplaying(productName));
         Thread.sleep(3000);
