@@ -1,5 +1,6 @@
 package ExcelDriven;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -27,13 +28,21 @@ public class dataDriven {
 
 
                 // Identify TestCases column by scanning the entire 1st row
-                Iterator<Row> rows=sheet.iterator();
-                Row firstrow=rows.next();
+                Iterator<Row> rows = sheet.iterator();  // sheet is collection of rows
+                Row firstrow = rows.next();
+                Iterator<Cell> ce = firstrow.cellIterator(); // row is collection of cells
 
-                
+                int k = 0;
+                while (ce.hasNext()) {
+                    Cell value = ce.next();
+                    if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
+
+                        // Desired column
+                    }
+                    k++;
 
 
-
+                }
 
 
             }
