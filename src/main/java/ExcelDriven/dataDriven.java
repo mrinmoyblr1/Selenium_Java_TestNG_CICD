@@ -52,8 +52,4 @@ public class dataDriven {
         }
         return a;
     }
-
-    public static void main(String[] args) throws IOException {
-
-    }
 }
