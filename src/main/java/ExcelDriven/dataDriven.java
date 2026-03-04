@@ -35,7 +35,7 @@ public class dataDriven {
                 int column = 0;
                 while (ce.hasNext()) {
                     Cell value = ce.next();
-                    System.out.println(value.getStringCellValue());
+                    //System.out.println(value.getStringCellValue());
 
                     if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
                         column = k;
@@ -43,17 +43,20 @@ public class dataDriven {
                     }
                     k++;
                 }
-                System.out.println("Column No: "+column);
-
-
-
+                //System.out.println("Column No: " + column);
                 // Once column is identified then scan entire TestCases column to identify purchase test case row
+                while (rows.hasNext()) {
+                    Row r = rows.next();
+                    if (r.getCell(column).getStringCellValue().equalsIgnoreCase("Purchase")) {
+                        // After you grab purchase test case row then pull all the data of that row and feed into test
+                        Iterator<Cell> cv = r.cellIterator();
+                        while (cv.hasNext()) {
+                            System.out.println(cv.next().getStringCellValue());
+                        }
 
-                
-
-
+                    }
+                }
             }
-
         }
     }
 }
