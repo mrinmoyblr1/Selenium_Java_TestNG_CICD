@@ -34,6 +34,4 @@ public class ErrorValidationsTest extends BaseTest {
         boolean match = cartPage.verifyProductDisplaying("ZARA COAT 4");
         Assert.assertFalse(match);
     }
-
-
 }
