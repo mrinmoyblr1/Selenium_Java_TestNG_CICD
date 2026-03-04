@@ -11,11 +11,16 @@ public class dataDriven {
         FileInputStream file = new FileInputStream("user.dir" + "/src/main/java/ExcelDriven/TestData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 
-        workbook.
+        int sheets = workbook.getNumberOfSheets();
+        for (int i = 0; i < sheets; i++) {
+
+            XSSFWorkbook sheets = workbook.getSheetAt(i);
+            if (sheets.getSheetName().equalsIgnoreCase("TestData")) {
+                System.out.println("Sheet found");
 
 
+            }
 
 
-
+        }
     }
-}
