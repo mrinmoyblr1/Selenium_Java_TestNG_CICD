@@ -14,13 +14,11 @@ public class dataDriven {
         int sheets = workbook.getNumberOfSheets();
         for (int i = 0; i < sheets; i++) {
 
-            XSSFWorkbook sheets = workbook.getSheetAt(i);
-            if (sheets.getSheetName().equalsIgnoreCase("TestData")) {
-                System.out.println("Sheet found");
-
+            if (workbook.getSheetName(i).equalsIgnoreCase("TestData")) {
 
             }
 
+        }
 
         }
     }
