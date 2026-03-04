@@ -1,5 +1,6 @@
 package ExcelDriven;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -13,12 +14,18 @@ public class dataDriven {
 
         int sheets = workbook.getNumberOfSheets();
         for (int i = 0; i < sheets; i++) {
-
             if (workbook.getSheetName(i).equalsIgnoreCase("TestData")) {
+                XSSFSheet sheet = workbook.getSheetAt(i);
+                int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+                for (int j = 0; j < rowCount + 1; j++) {
+                    String data = sheet.getRow(j).getCell(0).getStringCellValue();
+                    System.out.println(data);
+
+
+                }
 
             }
 
         }
-
     }
 }
