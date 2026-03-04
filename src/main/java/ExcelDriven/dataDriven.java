@@ -32,15 +32,24 @@ public class dataDriven {
                 Iterator<Cell> ce = firstrow.cellIterator(); // row is collection of cells
 
                 int k = 0;
+                int column = 0;
                 while (ce.hasNext()) {
                     Cell value = ce.next();
-                    if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
+                    System.out.println(value.getStringCellValue());
 
+                    if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
+                        column = k;
                         // Desired column
                     }
                     k++;
-
                 }
+                System.out.println("Column No: "+column);
+
+
+
+                // Once column is identified then scan entire TestCases column to identify purchase test case row
+
+                
 
 
             }
