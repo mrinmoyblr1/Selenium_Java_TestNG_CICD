@@ -8,13 +8,13 @@ import java.io.IOException;
 public class dataDriven {
     public static void main(String[] args) throws IOException {
 
-        FileInputStream file = new FileInputStream("/Users/mrinmoy/Document-Local/Documents/Development_Local/Selenium_Java_TestNG_CICD/src/main/java/ExcelDriven");
-
-
+        FileInputStream file = new FileInputStream("user.dir" + "/src/main/java/ExcelDriven/TestData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 
+        workbook.
 
-        System.out.println("Data Driven Framework");
+
+
 
 
     }
