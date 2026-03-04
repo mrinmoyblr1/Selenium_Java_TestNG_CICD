@@ -11,7 +11,7 @@ public class testSample {
     public void testSample() throws IOException {
         dataDriven d = new dataDriven();
 
-        ArrayList<String> data1 = d.getData("Purchase");
+        ArrayList<String> data1 = d.getData("Add Profile");
 
         for (String a1 : data1) {
             System.out.println(a1);

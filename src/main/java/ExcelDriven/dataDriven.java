@@ -55,16 +55,5 @@ public class dataDriven {
 
     public static void main(String[] args) throws IOException {
 
-        dataDriven d = new dataDriven();
-        ArrayList<String> data1 = d.getData("Purchase");
-
-        for (String s1 : data1) {
-            System.out.println("Under Main Method: Test Data for Purchase: " + s1);
-        }
-        ArrayList<String> data2 = d.getData("Add Profile");
-
-        for (String s2 : data2) {
-            System.out.println("Under Main Method: Test Data for Add Profile: " + s2);
-        }
     }
 }
