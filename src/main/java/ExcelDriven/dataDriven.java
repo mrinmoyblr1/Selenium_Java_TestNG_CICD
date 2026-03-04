@@ -1,6 +1,7 @@
 package ExcelDriven;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -39,12 +40,21 @@ public class dataDriven {
                 // Once column is identified then scan entire TestCases column to identify purchase test case row
                 while (rows.hasNext()) {
                     Row r = rows.next();
+
+
                     if (r.getCell(column).getStringCellValue().equalsIgnoreCase(testCasesName)) {
                         // After you grab purchase test case row then pull all the data of that row and feed into test
                         Iterator<Cell> cv = r.cellIterator();
                         int x = 0;
+
                         while (cv.hasNext()) {
-                            a.add(cv.next().getStringCellValue());
+                            Cell c = cv.next();
+
+                            if (c.getCellType() == CellType.STRING) {
+                                a.add(c.getStringCellValue());
+                            } else {
+                                a.add(String.valueOf(c.getNumericCellValue()));
+                            }
                         }
                     }
                 }
