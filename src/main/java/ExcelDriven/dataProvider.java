@@ -7,8 +7,8 @@ public class dataProvider {
 
 
     @Test(dataProvider = "getData")
-    public void testCaseData(String greeting, String message, int number) {
-        System.out.println(greeting + message + " " + number);
+    public void testCaseData(String greeting, String communication, int id) {
+        System.out.println(greeting + communication + " " + id);
     }
 
 
