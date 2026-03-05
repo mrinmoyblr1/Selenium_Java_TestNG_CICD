@@ -1,5 +1,6 @@
 package ExcelDriven;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -29,11 +30,52 @@ public class dataProvider {
         XSSFSheet sheet = wb.getSheetAt(0);
         int rowCount = sheet.getPhysicalNumberOfRows();
 
-        XSSFRow row = sheet.getRow(0);
+        XSSFRow row = sheet.getRow(0); // It will return the first row of the sheet and we can get the column count from that row
         int column_Count = row.getLastCellNum();
 
         Object[][] data = new Object[rowCount - 1][column_Count];
 
 
+        for (int i = 0; i < rowCount; i++) {
+
+            row = sheet.getRow(i + 1);
+
+            for (int j = 0; j < column_Count; j++) {
+                System.out.println(row.getCell(j).getStringCellValue());
+
+                //row.getCell(j);
+
+
+            }
+        }
+
+
+    }
+
+
+    @Test
+    public void testCaseData2() throws IOException {
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/excelDriven.xlsx");
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+
+        XSSFSheet sheet = wb.getSheetAt(0);
+        int rowCount = sheet.getPhysicalNumberOfRows();
+
+        XSSFRow row = sheet.getRow(0); // It will return the first row of the sheet and we can get the column count from that row
+        int column_Count = row.getLastCellNum();
+
+        for (int i = 0; i < rowCount; i++) {
+
+            row = sheet.getRow(i + 1);
+
+            for (int j = 0; j < column_Count; j++) {
+                System.out.println(row.getCell(j).getStringCellValue());
+
+                //row.getCell(j);
+
+            }
+
+
+        }
     }
 }
