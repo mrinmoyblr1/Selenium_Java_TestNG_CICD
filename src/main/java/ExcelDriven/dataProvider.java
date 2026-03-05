@@ -18,19 +18,14 @@ public class dataProvider {
 
 
     @DataProvider(name = "getData")
-    public Object[][] getData() throws IOException {
-        Object[][] data = {{"Hello", " text", "1"}, {"bye", " message", "143"}, {"solo", " call", "454"}};
+    public void getData() throws IOException {
+//        Object[][] data = {{"Hello", " text", "1"}, {"bye", " message", "143"}, {"solo", " call", "454"}};
         // Every ROW of Excel should be one Object array
 
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/excelDriven.xlsx");
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-
-        int sheets = workbook.getNumberOfSheets();
-        for (int i = 0; i < sheets; i++) {
-
-        }
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
 
 
-        return data;
+
     }
 }
