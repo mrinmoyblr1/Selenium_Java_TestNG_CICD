@@ -1,5 +1,7 @@
 package ExcelDriven;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,6 +14,8 @@ import java.io.IOException;
 public class dataProvider {
 
 
+    DataFormatter formatter = new DataFormatter();
+
     @Test(dataProvider = "getData")
     public void testCaseData(String greeting, String communication, String id) {
         System.out.println(greeting + communication + " " + id);
@@ -19,7 +23,7 @@ public class dataProvider {
 
 
     @DataProvider(name = "getData")
-    public void getData() throws IOException {
+    public Object[][] getData() throws IOException {
 //        Object[][] data = {{"Hello", " text", "1"}, {"bye", " message", "143"}, {"solo", " call", "454"}};
         // Every ROW of Excel should be one Object array
 
@@ -39,11 +43,10 @@ public class dataProvider {
 
             for (int j = 0; j < column_Count; j++) {
 
-
-                data[i][j] = row.getCell(j);
+                XSSFCell cell = row.getCell(j);
+                data[i][j] = formatter.formatCellValue(cell);
             }
         }
+        return data;
     }
-
-
 }
