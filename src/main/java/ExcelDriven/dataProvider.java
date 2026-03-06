@@ -21,14 +21,21 @@ public class dataProvider {
 
     @DataProvider(name = "getData")
     public Object[][] getData() throws IOException {
-//        Object[][] data = {{"Hello", " text", "1"}, {"bye", " message", "143"}, {"solo", " call", "454"}};
-        // Every ROW of Excel should be one Object array
+
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/excelDriven.xlsx");
         XSSFWorkbook wb = new XSSFWorkbook(fis);
+        // Getting the sheet from the workbook
         XSSFSheet sheet = wb.getSheetAt(0);
+
+        // Getting the total number of rows in the sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
-        XSSFRow row = sheet.getRow(0); // It will return the first row of the sheet and we can get the column count from that row
+
+        // Below two steps will get the total number of columns in the sheet
+        XSSFRow row = sheet.getRow(0);
         int column_Count = row.getLastCellNum();
+
+        
+
         Object[][] data = new Object[rowCount - 1][column_Count];
         for (int i = 0; i < rowCount - 1; i++) {
             row = sheet.getRow(i + 1);
