@@ -9,7 +9,7 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class RelativeLocatorsExample {
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "/Users/mrinmoy/IdeaProjects/Introduction/src/main/java/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "/Users/mrinmoy/IdeaProjects/Introduction/src/main/java/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/angularpractice/");
 
