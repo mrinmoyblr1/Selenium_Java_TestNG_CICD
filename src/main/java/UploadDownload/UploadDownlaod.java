@@ -16,6 +16,8 @@ public class UploadDownlaod {
     @Test
     public void uploadDownload() throws InterruptedException {
 
+        String fruitName = "Mango";
+
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -43,15 +45,16 @@ public class UploadDownlaod {
         // Verify updated Excel data showing in the Web page
         String priceColumn = driver.findElement(By.xpath("//div[text()='Price']")).getAttribute("data-column-id");
         System.out.println(priceColumn);
-        String actualPrice = driver.findElement(By.xpath("//div[text()='Apple']/parent::div/parent::div/div[@id='cell-" + priceColumn + "-undefined']")).getText();
-        System.out.println(actualPrice);
+        String actualPrice = driver.findElement(By.xpath("//div[text()='" + fruitName + "']/parent::div/parent::div/div[@id='cell-" + priceColumn + "-undefined']")).getText();
+        System.out.println("The Actual Fruit Price: "+actualPrice);
+        Assert.assertEquals(actualPrice, "999");
 
 
         ////div[text()='Apple']/parent::div/following-sibling::div[2]
         ////div[text()='Apple']/parent::div/parent::div/div[@id='cell-4-undefined']
 
 
-        Thread.sleep(10000);
+        Thread.sleep(2000);
         driver.quit();
     }
 }
