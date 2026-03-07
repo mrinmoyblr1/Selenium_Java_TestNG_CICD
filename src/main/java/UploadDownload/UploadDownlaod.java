@@ -41,6 +41,11 @@ public class UploadDownlaod {
 
 
         // Verify updated Excel data showing in the Web page
+        String priceColumn = driver.findElement(By.xpath("//div[text()='Price']")).getAttribute("data-column-id");
+        System.out.println(priceColumn);
+        String actualPrice = driver.findElement(By.xpath("//div[text()='Apple']/parent::div/parent::div/div[@id='cell-" + priceColumn + "-undefined']")).getText();
+        System.out.println(actualPrice);
+
 
         ////div[text()='Apple']/parent::div/following-sibling::div[2]
         ////div[text()='Apple']/parent::div/parent::div/div[@id='cell-4-undefined']
