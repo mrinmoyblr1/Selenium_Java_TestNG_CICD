@@ -26,8 +26,10 @@ public class UploadDownlaod {
     @Test
     public void uploadDownload() throws InterruptedException, IOException {
 
-        String fruitName = "Mango";
+        String fruitName = "Apple";
+        String updatedValue = "598";
         String fileName = System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx";
+
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -38,9 +40,10 @@ public class UploadDownlaod {
         // Edit Excel - getColumnNumber of Price -getRowNUmber of Apple -> Update Excel Wow, Col
 
 
+        // Update Excel Data
         int col = getColNumber(fileName, "Price");
         int row = getRowNumber(fileName, "Apple");
-        updateCell(fileName, row, col, "599");
+        Assert.assertTrue(updateCell(fileName, row, col, updatedValue));
 
 
         WebElement upload = driver.findElement(By.cssSelector("input[type='file']"));
@@ -66,7 +69,7 @@ public class UploadDownlaod {
         ////div[text()='Apple']/parent::div/following-sibling::div[2]
         ////div[text()='Apple']/parent::div/parent::div/div[@id='cell-4-undefined']
         System.out.println("The Actual Fruit Price: " + actualPrice);
-        Assert.assertEquals(actualPrice, "999");
+        Assert.assertEquals(actualPrice, updatedValue);
 
 
         Thread.sleep(2000);
@@ -125,8 +128,8 @@ public class UploadDownlaod {
             Iterator<Cell> cell = row.cellIterator();
 
             while (cell.hasNext()) {
-                Cell cell = cell.next();
-                if (cell.getStringCellValue().equalsIgnoreCase(text)) {
+                Cell c = cell.next();
+                if (c.getStringCellValue().equalsIgnoreCase(text)) {
                     rowIndex = k;
                 }
             }
