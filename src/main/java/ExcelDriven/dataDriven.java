@@ -21,24 +21,30 @@ public class dataDriven {
         FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(file);
         int sheets = workbook.getNumberOfSheets();
+
         for (int i = 0; i < sheets; i++) {
             if (workbook.getSheetName(i).equalsIgnoreCase("TestData")) {
                 XSSFSheet sheet = workbook.getSheetAt(i);
 
-                // Identify TestCases column by scanning the entire 1st row
-                Iterator<Row> rows = sheet.iterator();  // sheet is collection of rows
+                // Identify the TestCases column by scanning the entire 1st row
+                Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
+                // To get the first row
                 Row firstrow = rows.next();
-                Iterator<Cell> ce = firstrow.cellIterator(); // row is collection of cells
+
+
+                // To get the column number of TestCases
+                Iterator<Cell> ce = firstrow.cellIterator(); // row is a collection of cells
                 int k = 0;
                 int column = 0;
                 while (ce.hasNext()) {
                     Cell value = ce.next();
                     if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
                         column = k;
-                        // Desired column
                     }
                     k++;
                 }
+
+
                 // Once column is identified then scan entire TestCases column to identify purchase test case row
                 while (rows.hasNext()) {
                     Row r = rows.next();
