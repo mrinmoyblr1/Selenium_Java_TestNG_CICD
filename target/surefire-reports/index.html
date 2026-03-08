@@ -129,11 +129,10 @@
                   <a name="uploadDownload">
                   </a> <!-- uploadDownload -->
                   <span class="method-name">uploadDownload</span>
-                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.ss.usermodel.Row.getCell(int)&quot; because &quot;rowField&quot; is null
-	at UploadDownload.UploadDownlaod.updateCell(UploadDownlaod.java:155)
-	at UploadDownload.UploadDownlaod.uploadDownload(UploadDownlaod.java:48)
+                  <div class="stack-trace">java.lang.AssertionError: expected [598] but found [345]
+	at UploadDownload.UploadDownlaod.uploadDownload(UploadDownlaod.java:82)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-... Removed 32 stack frames
+... Removed 38 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -208,12 +207,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'uploadDownload')
 data.setCell(0, 2, 'UploadDownload.UploadDownlaod')
-data.setCell(0, 3, 5913);
+data.setCell(0, 3, 10679);
 window.suiteTableData['Loan_Department']= { tableData: data, tableDiv: 'times-div-Loan_Department'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-Loan_Department">
               </div> <!-- times-div-Loan_Department -->
             </div> <!-- times-div -->

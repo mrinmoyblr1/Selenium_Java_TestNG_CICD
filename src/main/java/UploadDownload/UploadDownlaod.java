@@ -30,7 +30,8 @@ public class UploadDownlaod {
 
         String fruitName = "Apple";
         String updatedValue = "598";
-        String fileName = System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx";
+        String fileName = System.getProperty("user.dir") + "/src/main/java/UploadDownload/download.xlsx";
+        String columnName = "price";
 
 
         WebDriver driver = new ChromeDriver();
@@ -43,8 +44,15 @@ public class UploadDownlaod {
 
 
         // Update Excel Data
-        int col = getColNumber(fileName, "Price");
-        int row = getRowNumber(fileName, "Apple");
+        int row = getRowNumber(fileName, fruitName);
+        int col = getColNumber(fileName, columnName);
+
+
+        System.out.println("===============================");
+        System.out.println("Row: " + row + " Column: " + col);
+        System.out.println("===============================");
+
+
         Assert.assertTrue(updateCell(fileName, row, col, updatedValue));
 
 
@@ -79,6 +87,41 @@ public class UploadDownlaod {
     }
 
 
+    public int getRowNumber(String fileName, String fruitName) throws IOException {
+        DataFormatter formatter = new DataFormatter();
+
+        ArrayList<String> a = new ArrayList<String>();
+        FileInputStream file = new FileInputStream(fileName);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        // Identify the TestCases column by scanning the entire 1st row
+        Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
+
+        int k = 0;
+        int rowIndex = -1;
+
+        while (rows.hasNext()) {
+            // To get the first row
+            Row row = rows.next();
+            // To get the column number of TestCases
+            Iterator<Cell> cell = row.cellIterator();
+
+            while (cell.hasNext()) {
+                Cell c = cell.next();
+                if (c.getCellType() == CellType.STRING && c.getStringCellValue().equalsIgnoreCase(fruitName)) {
+                    rowIndex = k;
+                } else if (c.getCellType() == CellType.NUMERIC && formatter.formatCellValue(c).equalsIgnoreCase(fruitName)) {
+                    rowIndex = k;
+                }
+            }
+            k++;
+        }
+        return rowIndex;
+    }
+
+
     public static int getColNumber(String fileName, String columnName) throws IOException {
 
         ArrayList<String> a = new ArrayList<String>();
@@ -110,49 +153,14 @@ public class UploadDownlaod {
     }
 
 
-    public int getRowNumber(String fileName, String text) throws IOException {
-        DataFormatter formatter = new DataFormatter();
-
-        ArrayList<String> a = new ArrayList<String>();
-        FileInputStream file = new FileInputStream(fileName);
-        XSSFWorkbook workbook = new XSSFWorkbook(file);
-
-        XSSFSheet sheet = workbook.getSheetAt(0);
-
-        // Identify the TestCases column by scanning the entire 1st row
-        Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
-
-        int k = 0;
-        int rowIndex = -1;
-
-        while (rows.hasNext()) {
-            // To get the first row
-            Row row = rows.next();
-            // To get the column number of TestCases
-            Iterator<Cell> cell = row.cellIterator();
-
-            while (cell.hasNext()) {
-                Cell c = cell.next();
-                if (c.getCellType() == CellType.STRING && c.getStringCellValue().equalsIgnoreCase(text)) {
-                    rowIndex = k;
-                } else if (c.getCellType() == CellType.NUMERIC && formatter.formatCellValue(c).equalsIgnoreCase(text)) {
-                    rowIndex = k;
-                }
-            }
-            k++;
-        }
-        return rowIndex;
-    }
-
-
     public boolean updateCell(String fileName, int row, int col, String value) throws IOException {
         ArrayList<String> a = new ArrayList<String>();
         FileInputStream file = new FileInputStream(fileName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
         XSSFSheet sheet = workbook.getSheetAt(0);
 
-        Row rowField = sheet.getRow(row - 1);
-        Cell cellField = rowField.getCell(col - 1);
+        Row rowField = sheet.getRow(row);
+        Cell cellField = rowField.getCell(col);
         cellField.setCellValue(value);
         //sheet.getRow(row).getCell(col).setCellValue(value);
 
@@ -160,7 +168,6 @@ public class UploadDownlaod {
         workbook.write(fos);
         workbook.close();
         fos.close();
-        file.close();
         return true;
 
     }
