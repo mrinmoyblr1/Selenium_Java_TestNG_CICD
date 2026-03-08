@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="TestSuite" time="12.571" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="TestSuite" time="11.331" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="/Users/mrinmoy/Documents-Local/Documents/Development_Local/CICD/Introduction"/>
-    <property name="java.vm.compressedOopsMode" value="Non-zero disjoint base"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="24.0.1+9-30"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.io.tmpdir" value="/var/folders/t3/gt8f856s23nb44y1jpkh_qc00000gn/T/"/>
@@ -61,5 +61,5 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="UploadDownload.UploadDownlaod" name="uploadDownload" time="12.571"/>
+  <testcase classname="UploadDownload.UploadDownlaod" name="uploadDownload" time="11.331"/>
 </testsuite>
