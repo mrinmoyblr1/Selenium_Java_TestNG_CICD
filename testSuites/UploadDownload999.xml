@@ -4,17 +4,11 @@
     <test name="Regression">
         <groups>
             <run>
-                <include name="Smoke"/>
-                <exclude name="Api"/>
+                <include name="BKM"/>
             </run>
         </groups>
-
-
         <classes>
-            <class name="TestNGTutorial.Day1"/>
-            <class name="TestNGTutorial.Day2"/>
-            <class name="TestNGTutorial.Day3"/>
-            <class name="TestNGTutorial.Day4"/>
+            <class name="UploadDownload.UploadDownlaod"/>
         </classes>
     </test>
 </suite>

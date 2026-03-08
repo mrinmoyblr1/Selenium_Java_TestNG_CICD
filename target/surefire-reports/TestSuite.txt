@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 44.82 s -- in TestSuite
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.132 sec <<< FAILURE!
+uploadDownload(UploadDownload.UploadDownlaod)  Time elapsed: 5.915 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.apache.poi.ss.usermodel.Row.getCell(int)" because "rowField" is null
+	at UploadDownload.UploadDownlaod.updateCell(UploadDownlaod.java:155)
+	at UploadDownload.UploadDownlaod.uploadDownload(UploadDownlaod.java:48)
+

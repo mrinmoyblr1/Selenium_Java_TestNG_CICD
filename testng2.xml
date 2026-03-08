@@ -4,6 +4,7 @@
     <test name="Personal Loan">
         <packages>
             <package name="TestNGTutorial"/>
+<!--            <package name="UploadDownlaod"/>-->
         </packages>
     </test>
 </suite>

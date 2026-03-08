@@ -1,6 +1,8 @@
 package UploadDownload;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -23,7 +25,7 @@ import java.util.Iterator;
 
 public class UploadDownlaod {
 
-    @Test
+    @Test(groups = {"BKM"})
     public void uploadDownload() throws InterruptedException, IOException {
 
         String fruitName = "Apple";
@@ -83,7 +85,7 @@ public class UploadDownlaod {
         FileInputStream file = new FileInputStream(fileName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 
-        XSSFSheet sheet = workbook.getSheet("Excel");
+        XSSFSheet sheet = workbook.getSheetAt(0);
 
         // Identify the TestCases column by scanning the entire 1st row
         Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
@@ -109,11 +111,13 @@ public class UploadDownlaod {
 
 
     public int getRowNumber(String fileName, String text) throws IOException {
+        DataFormatter formatter = new DataFormatter();
+
         ArrayList<String> a = new ArrayList<String>();
         FileInputStream file = new FileInputStream(fileName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 
-        XSSFSheet sheet = workbook.getSheet("Excel");
+        XSSFSheet sheet = workbook.getSheetAt(0);
 
         // Identify the TestCases column by scanning the entire 1st row
         Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
@@ -129,7 +133,9 @@ public class UploadDownlaod {
 
             while (cell.hasNext()) {
                 Cell c = cell.next();
-                if (c.getStringCellValue().equalsIgnoreCase(text)) {
+                if (c.getCellType() == CellType.STRING && c.getStringCellValue().equalsIgnoreCase(text)) {
+                    rowIndex = k;
+                } else if (c.getCellType() == CellType.NUMERIC && formatter.formatCellValue(c).equalsIgnoreCase(text)) {
                     rowIndex = k;
                 }
             }
@@ -143,7 +149,7 @@ public class UploadDownlaod {
         ArrayList<String> a = new ArrayList<String>();
         FileInputStream file = new FileInputStream(fileName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
-        XSSFSheet sheet = workbook.getSheet("Excel");
+        XSSFSheet sheet = workbook.getSheetAt(0);
 
         Row rowField = sheet.getRow(row - 1);
         Cell cellField = rowField.getCell(col - 1);
