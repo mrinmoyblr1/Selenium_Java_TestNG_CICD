@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="1" name="TestSuite" time="10.681" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="TestSuite" time="12.571" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -61,31 +61,5 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="UploadDownload.UploadDownlaod" name="uploadDownload" time="10.681">
-    <failure message="expected [598] but found [345]" type="java.lang.AssertionError">java.lang.AssertionError: expected [598] but found [345]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at org.testng.Assert.assertEquals(Assert.java:666)
-	at UploadDownload.UploadDownlaod.uploadDownload(UploadDownlaod.java:82)
-</failure>
-    <system-out>2026-03-08T17:03:56.754296Z main ERROR Log4j API could not find a logging provider.
-4
-===============================
-Row: 2 Column: 4
-===============================
-Updated Excel Data Successfully.
-The Actual Fruit Price: 345
-</system-out>
-    <system-err>SLF4J(W): No SLF4J providers were found.
-SLF4J(W): Defaulting to no-operation (NOP) logger implementation
-SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
-Mar 08, 2026 1:03:51 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find CDP implementation matching 145
-Mar 08, 2026 1:03:51 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
-WARNING: Unable to find version of CDP to use for 145.0.7632.160. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.33.0` where the version (&quot;v86&quot;) matches the version of the chromium-based browser you&apos;re using and the version number of the artifact is the same as Selenium&apos;s.
-</system-err>
-  </testcase>
+  <testcase classname="UploadDownload.UploadDownlaod" name="uploadDownload" time="12.571"/>
 </testsuite>

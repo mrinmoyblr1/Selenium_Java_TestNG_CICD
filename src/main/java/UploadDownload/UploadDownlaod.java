@@ -47,14 +47,7 @@ public class UploadDownlaod {
         int row = getRowNumber(fileName, fruitName);
         int col = getColNumber(fileName, columnName);
 
-
-        System.out.println("===============================");
-        System.out.println("Row: " + row + " Column: " + col);
-        System.out.println("===============================");
-
-
         Assert.assertTrue(updateCell(fileName, row, col, updatedValue));
-
 
         WebElement upload = driver.findElement(By.cssSelector("input[type='file']"));
         upload.sendKeys(System.getProperty("user.dir") + "/src/main/java/UploadDownload/download.xlsx");
@@ -160,7 +153,7 @@ public class UploadDownlaod {
         XSSFSheet sheet = workbook.getSheetAt(0);
 
         Row rowField = sheet.getRow(row);
-        Cell cellField = rowField.getCell(col);
+        Cell cellField = rowField.getCell(col-1);
         cellField.setCellValue(value);
         //sheet.getRow(row).getCell(col).setCellValue(value);
 
@@ -169,6 +162,6 @@ public class UploadDownlaod {
         workbook.close();
         fos.close();
         return true;
-
     }
+
 }
