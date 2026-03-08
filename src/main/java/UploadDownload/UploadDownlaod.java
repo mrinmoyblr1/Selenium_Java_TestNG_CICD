@@ -24,7 +24,12 @@ public class UploadDownlaod {
         driver.get("https://rahulshettyacademy.com/upload-download-test/");
 
         driver.findElement(By.cssSelector("#downloadButton")).click();
-        // Edit Excel
+        // Edit Excel - getColumnNumber of Price -getRowNUmber of Apple -> Update Excel Wow, Col
+
+
+        // inr col=getCOlNumber("Price")
+        // int row=getRowNumber("Apple")
+        // updateCell()
 
 
         WebElement upload = driver.findElement(By.cssSelector("input[type='file']"));
