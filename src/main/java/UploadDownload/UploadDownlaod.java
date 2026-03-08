@@ -14,7 +14,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -74,45 +73,42 @@ public class UploadDownlaod {
 
     public int getColNumber(String fileName, String columnName) throws IOException {
 
-
         ArrayList<String> a = new ArrayList<String>();
         FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(file);
         int sheets = workbook.getNumberOfSheets();
 
-        for (int i = 0; i < sheets; i++) {
-            if (workbook.getSheetName(i).equalsIgnoreCase("TestData")) {
-                XSSFSheet sheet = workbook.getSheetAt(i);
+        XSSFSheet sheet = workbook.getSheetAt(0);
 
-                // Identify the TestCases column by scanning the entire 1st row
-                Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
-                // To get the first row
-                Row firstrow = rows.next();
+        // Identify the TestCases column by scanning the entire 1st row
+        Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
 
+        // To get the first row
+        Row firstrow = rows.next();
 
-                // To get the column number of TestCases
-                Iterator<Cell> ce = firstrow.cellIterator(); // row is a collection of cells
-                int k = 0;
-                int column = 0;
-                while (ce.hasNext()) {
-                    Cell value = ce.next();
-                    if (value.getStringCellValue().equalsIgnoreCase("TestCases")) {
-                        column = k;
-                    }
-                    k++;
-                }
-
-
-                return 0;
+        // To get the column number of TestCases
+        Iterator<Cell> ce = firstrow.cellIterator(); // row is a collection of cells
+        int k = 1;
+        int column = 0;
+        while (ce.hasNext()) {
+            Cell value = ce.next();
+            if (value.getStringCellValue().equalsIgnoreCase(columnName)) {
+                column = k;
             }
-
-
-            public int getRowNumber (String fileName, String fruitName){
-                return 0;
-            }
-
-
-            public void updateCell (String fileName,int row, int col, String value){
-
-            }
+            k++;
         }
+
+
+        return 0;
+    }
+
+
+    public int getRowNumber(String fileName, String fruitName) {
+        return 0;
+    }
+
+
+    public void updateCell(String fileName, int row, int col, String value) {
+
+    }
+}
