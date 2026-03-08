@@ -30,7 +30,7 @@ public class dataProvider {
         // Getting the total number of rows in the sheet
         int rowCount = sheet.getPhysicalNumberOfRows();
 
-        // Below two steps will get the total number of columns in the sheet
+        // The below two steps will get the total number of columns in the sheet
         XSSFRow row = sheet.getRow(0);
         int column_Count = row.getLastCellNum();
 

@@ -51,7 +51,7 @@ public class dataDriven {
 
 
                     if (r.getCell(column).getStringCellValue().equalsIgnoreCase(testCasesName)) {
-                        // After you grab purchase test case row then pull all the data of that row and feed into test
+                        // After you grab purchase test case row then pull all the data of that row and feed into the test
                         Iterator<Cell> cv = r.cellIterator();
                         int x = 0;
 
