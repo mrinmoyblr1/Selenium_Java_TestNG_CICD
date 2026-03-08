@@ -13,7 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -22,9 +24,10 @@ import java.util.Iterator;
 public class UploadDownlaod {
 
     @Test
-    public void uploadDownload() throws InterruptedException {
+    public void uploadDownload() throws InterruptedException, IOException {
 
         String fruitName = "Mango";
+        String fileName = System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx";
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -37,7 +40,7 @@ public class UploadDownlaod {
 
         int col = getColNumber(fileName, "Price");
         int row = getRowNumber(fileName, "Apple");
-        updateCell(fileName, row, cal, "599");
+        updateCell(fileName, row, col, "599");
 
 
         WebElement upload = driver.findElement(By.cssSelector("input[type='file']"));
@@ -71,14 +74,13 @@ public class UploadDownlaod {
     }
 
 
-    public int getColNumber(String fileName, String columnName) throws IOException {
+    public static int getColNumber(String fileName, String columnName) throws IOException {
 
         ArrayList<String> a = new ArrayList<String>();
-        FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/ExcelDriven/TestData.xlsx");
+        FileInputStream file = new FileInputStream(fileName);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
-        int sheets = workbook.getNumberOfSheets();
 
-        XSSFSheet sheet = workbook.getSheetAt(0);
+        XSSFSheet sheet = workbook.getSheet("Excel");
 
         // Identify the TestCases column by scanning the entire 1st row
         Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
@@ -98,17 +100,59 @@ public class UploadDownlaod {
             k++;
         }
 
-
-        return 0;
+        System.out.println(column);
+        return column;
     }
 
 
-    public int getRowNumber(String fileName, String fruitName) {
-        return 0;
+    public int getRowNumber(String fileName, String text) throws IOException {
+        ArrayList<String> a = new ArrayList<String>();
+        FileInputStream file = new FileInputStream(fileName);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+        XSSFSheet sheet = workbook.getSheet("Excel");
+
+        // Identify the TestCases column by scanning the entire 1st row
+        Iterator<Row> rows = sheet.iterator();  // sheet is a collection of rows
+
+        int k = 0;
+        int rowIndex = -1;
+
+        while (rows.hasNext()) {
+            // To get the first row
+            Row row = rows.next();
+            // To get the column number of TestCases
+            Iterator<Cell> cell = row.cellIterator();
+
+            while (cell.hasNext()) {
+                Cell cell = cell.next();
+                if (cell.getStringCellValue().equalsIgnoreCase(text)) {
+                    rowIndex = k;
+                }
+            }
+            k++;
+        }
+        return rowIndex;
     }
 
 
-    public void updateCell(String fileName, int row, int col, String value) {
+    public boolean updateCell(String fileName, int row, int col, String value) throws IOException {
+        ArrayList<String> a = new ArrayList<String>();
+        FileInputStream file = new FileInputStream(fileName);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheet("Excel");
+
+        Row rowField = sheet.getRow(row - 1);
+        Cell cellField = rowField.getCell(col - 1);
+        cellField.setCellValue(value);
+        //sheet.getRow(row).getCell(col).setCellValue(value);
+
+        FileOutputStream fos = new FileOutputStream(new File(fileName));
+        workbook.write(fos);
+        workbook.close();
+        fos.close();
+        file.close();
+        return true;
 
     }
 }
