@@ -16,7 +16,7 @@ public class JDBCConnection {
 
         Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/demo", "root", "root");
         Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery("select * from credentials where scenario ='Q1'");
+        ResultSet rs = s.executeQuery("SELECT * FROM credentials WHERE scenario ='Q1'");
 
         while (rs.next()) {
             System.out.println(rs.getString("Username"));
