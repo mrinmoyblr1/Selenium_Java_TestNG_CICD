@@ -23,13 +23,11 @@ public class JDBCConnection {
             System.out.println(rs.getString("Password"));
             String username = rs.getString("username");
             String password = rs.getString("password");
-
             {
                 WebDriver driver = new FirefoxDriver();
                 driver.get("https://login.salesforce.com");
                 driver.findElement(By.xpath(".//*[@id='username']")).sendKeys(username);
                 driver.findElement(By.xpath(".//*[@id='password']")).sendKeys(password);
-
             }
         }
     }
